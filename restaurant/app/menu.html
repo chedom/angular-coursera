@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="confusionApp">
 
 <head>
      <meta charset="utf-8">
@@ -26,51 +26,10 @@
 <body>
 
     <div class="container">
-        <div class="row row-content"
-            ng-init = "
-                dishes = [
-                {
-                    name       : 'Uthapizza',
-                    image      : 'images/uthapizza.png',
-                    category   : 'mains',
-                    label      : 'Hot',
-                    price      : '4.99',
-                    description: 'A unique combination of Indian Uthappam and Italian pizza',
-                    comment    : ''
-                },
-                {
-                    name       : 'buffet',
-                    image      : 'images/buffet.png',
-                    category   : 'mains',
-                    label      : 'Hot',
-                    price      : '12.14',
-                    description: 'A unique combination of Indian Uthappam and Italian pizza',
-                    comment    : ''
-                },
-                {
-                    name       : 'elaicheesecake',
-                    image      : 'images/elaicheesecake.png',
-                    category   : 'mains',
-                    label      : 'Hot',
-                    price      : '9.44',
-                    description: 'A unique combination of Indian Uthappam and Italian pizza',
-                    comment    : ''
-                },
-                {
-                    name       : 'Vadonut',
-                    image      : 'images/vadonut.png',
-                    category   : 'mains',
-                    label      : 'Hot',
-                    price      : '41.12',
-                    description: 'A unique combination of Indian Uthappam and Italian pizza',
-                    comment    : ''
-                },
-                ]
-            "
-        >
-            <div class="col-xs-12" ng-repeat="dish in dishes">
+        <div class="row row-content" ng-controller="menuController as menuCtrl">
+            <div class="col-xs-12" >
                 <ul class="media-list">
-                    <li class="media">
+                    <li class="media" ng-repeat="dish in menuCtrl.dishes">
                         <div class="media-left media-middle">
                             <a href="#">
                                 <img class="media-object img-thumbnail" ng-src={{dish.image}} />
@@ -91,6 +50,7 @@
         </div>
     </div>
 <script src = "../bower_components/angular/angular.js"></script>
+<script src = "./scripts/app.js"></script>
 </body>
 
 </html>
