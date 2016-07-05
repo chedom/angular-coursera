@@ -30,43 +30,63 @@
             <div class="col-xs-12" >
 
                 <ul class = "nav nav-tabs" role="tablist">
-                    <li role = "presentation">
-                        <a aria-controls="all menu" role="tab">
+                    <li role = "presentation"
+                        ng-class="{active:menuCtrl.isSelected(1)}"
+                    >
+                        <a aria-controls="all menu" role="tab"
+                            ng-click="menuCtrl.select(1)"
+                        >
                             The Menu
                         </a>
                     </li>
-                    <li role = "presentation">
-                        <a aria-controls="appetizers" role="tab">
+                    <li role = "presentation"
+                        ng-class="{active:menuCtrl.isSelected(2)}"
+                    >
+                        <a aria-controls="appetizers" role="tab"
+                            ng-click="menuCtrl.select(2)"
+
+                        >
                             Appetizers
                         </a>
                     </li>
-                    <li role = "presentation">
-                        <a aria-controls="mains" role="tab">
+                    <li role = "presentation"
+                        ng-class="{active:menuCtrl.isSelected(3)}"
+                    >
+                        <a aria-controls="mains" role="tab"
+                            ng-click="menuCtrl.select(3)"
+
+                        >
                             Mains
                         </a>
                     </li>
-                    <li role = "presentation">
-                        <a aria-controls="desserts" role="tab">
+                    <li role = "presentation"
+                        ng-class="{active:menuCtrl.isSelected(4)}"
+                    >
+                        <a aria-controls="desserts" role="tab"
+                            ng-click="menuCtrl.select(4)"
+
+                        >
                             Desserts
                         </a>
                     </li>
                 </ul>
-
-                <ul class="media-list">
-                    <li class="media" ng-repeat="dish in menuCtrl.dishes">
-                        <div class="media-left media-middle">
-                            <a href="#">
-                                <img class="media-object img-thumbnail" ng-src={{dish.image}} />
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h2 class="media-heading">{{dish.name}}</h2>
-                            <span class="label label-danger label-xs">{{dish.label}}</span>
-                            <span class="badge">{{dish.price | currency}}</span>
-                            <p>{{dish.description}}</p>
-                        </div>
-                    </li>
-                </ul>
+                <div class="tab-content">
+                    <ul class="media-list tab-pane fade in active">
+                        <li class="media" ng-repeat="dish in menuCtrl.dishes | filter:menuCtrl.filterText">
+                            <div class="media-left media-middle">
+                                <a href="#">
+                                    <img class="media-object img-thumbnail" ng-src={{dish.image}} />
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h2 class="media-heading">{{dish.name}}</h2>
+                                <span class="label label-danger label-xs">{{dish.label}}</span>
+                                <span class="badge">{{dish.price | currency}}</span>
+                                <p>{{dish.description}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
