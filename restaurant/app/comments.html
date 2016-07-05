@@ -44,7 +44,8 @@
                 <div>
             </div>
             <div class="col-xs-9 col-xs-offset-1">
-                <div ng-repeat="comment in detailCtrl.dish.comments">
+                <div>Order by <input ng-model="detailCtrl.orderProp" /></div>
+                <div ng-repeat="comment in detailCtrl.dish.comments | orderBy: detailCtrl.orderProp">
                     <blockquote>
                         <p>{{comment.rating}} Stars</p>
                         <p>{{comment.comment}}</p>

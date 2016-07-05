@@ -46,4 +46,6 @@ app.controller('dishDetailController', function() {
 
     this.dish = dish;
 
+    this.orderProp = 'rating';
+
 });
