@@ -2,7 +2,6 @@
 
 var app = angular.module('confusionApp', []);
 app.controller('menuController', function() {
-
     this.tab = 1;
     this.filterText = '';
 
