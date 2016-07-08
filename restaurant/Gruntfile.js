@@ -53,10 +53,10 @@ module.exports = function (grunt) {
         usemin: {
             html: ['dist/*.html'],
             css: ['dist/styles/*.css'],
-            js: ['dist/scripts/*.js'],
-            options: {
-                assetsDirs: ['dist', 'dist/styles', 'dist/scripts']
-            }
+            js: ['dist/scripts/*.js']
+            // options: {
+            //     assetsDirs: ['dist', 'dist/styles', 'dist/scripts']
+            // }
         },
 
         copy: {
