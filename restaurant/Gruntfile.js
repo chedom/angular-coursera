@@ -95,6 +95,57 @@ module.exports = function (grunt) {
             }
         },
 
+        watch: {
+            copy: {
+                files: [ 'app/**', '!app/**/*.css', '!app/**/*.js'],
+                tasks: [ 'build' ]
+            },
+
+            scripts: {
+                files: ['app/scripts/menu-app.js'],
+                tasks:[ 'build']
+            },
+
+            styles: {
+                files: ['app/styles/mystyles.css'],
+                tasks:['build']
+            },
+
+            livereload: {
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                },
+
+                files: [
+                    'app/{,*/}*.html',
+                    '.tmp/styles/{,*/}*.css',
+                    'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ]
+            }
+        },
+
+        connect: {
+            options: {
+                port: 9001,
+                // Change this to '0.0.0.0' to access the server from outside.
+                hostname: '0.0.0.0',
+                livereload: 35729
+            },
+
+            dist: {
+                options: {
+                    open: true,
+                    base:{
+                        path: 'dist',
+                        options: {
+                              index: 'menu.html',
+                              maxAge: 300000
+                        }
+                    }
+                }
+            }
+        },
+
     });
 
     grunt.registerTask('build', [
@@ -109,4 +160,6 @@ module.exports = function (grunt) {
         'usemin'
     ]);
     grunt.registerTask('default', ['build']);
+
+    grunt.registerTask('serve',['build','connect:dist','watch']);
 };
