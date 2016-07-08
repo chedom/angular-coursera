@@ -27,26 +27,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // Concat
-        concat: {
-            options: {
-                separator: ';'
-            },
-
-            // dist configuration is provided by useminPrepare
-            dist: {}
-        },
-
-        // Uglify
-        uglify: {
-        // dist configuration is provided by useminPrepare
-            dist: {}
-        },
-
-        cssmin: {
-            dist: {}
-        },
-
 // Filerev
         filerev: {
             options: {
@@ -73,8 +53,9 @@ module.exports = function (grunt) {
         usemin: {
             html: ['dist/*.html'],
             css: ['dist/styles/*.css'],
+            js: ['dist/scripts/*.js'],
             options: {
-                assetsDirs: ['dist', 'dist/styles']
+                assetsDirs: ['dist', 'dist/styles', 'dist/scripts']
             }
         },
 
@@ -120,9 +101,9 @@ module.exports = function (grunt) {
         'clean',
         'jshint',
         'useminPrepare',
-        'concat',
-        'cssmin',
-        'uglify',
+        'concat:generated',
+        'cssmin:generated',
+        'uglify:generated',
         'copy',
         'filerev',
         'usemin'
