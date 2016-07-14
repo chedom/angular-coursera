@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('confusionApp', []);
-app.controller('menuController', ['$scope', function($scope) {
+app.controller('MenuController', ['$scope', function($scope) {
     $scope.tab = 1;
     $scope.filterText = '';
 
