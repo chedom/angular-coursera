@@ -2,8 +2,13 @@
 
 var app = angular.module('confusionApp', []);
 app.controller('MenuController', ['$scope', function($scope) {
-    $scope.tab = 1;
-    $scope.filterText = '';
+    $scope.tab         = 1;
+    $scope.filterText  = '';
+    $scope.showDetails = false;
+
+    $scope.toggleDetails = function() {
+        $scope.showDetails = !$scope.showDetails;
+    }
 
     $scope.select = function(setTab) {
         $scope.tab = setTab;
