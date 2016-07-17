@@ -41,10 +41,10 @@
                             <p>{{detailCtrl.dish.description}}</p>
                         </div>
                     </div>
-                <div>
+                </div>
             </div>
             <div class="col-xs-9 col-xs-offset-1">
-                <div>Order by <input ng-model="detailCtrl.orderProp" /></div>
+                <div style="margin: 10px;">Order by: <input ng-model="detailCtrl.orderProp" /></div>
                 <div ng-repeat="comment in detailCtrl.dish.comments | orderBy: detailCtrl.orderProp">
                     <blockquote>
                         <p>{{comment.rating}} Stars</p>
