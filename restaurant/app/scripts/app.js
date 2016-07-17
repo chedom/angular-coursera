@@ -135,8 +135,28 @@ app.controller('ContactController', ['$scope', function($scope) {
 
     $scope.channels = channels;
     $scope.ivalidChannelSelection = false;
+
+
 }]);
 
 app.controller('FeedbackController', ['$scope', function($scope) {
-  
+    $scope.sendSubmit = function() {
+        console.log($scope.feedback, 'before feedback');
+        if ($scope.feedback.agree && $scope.feedback.mychannel === '') {
+            $scope.ivalidChannelSelection = true;
+            console.log('incorrect');
+        } else {
+            $scope.ivalidChannelSelection = false;
+            $scope.feedback = {
+                firstname: '',
+                lastname: '',
+                agree: false,
+                email:'',
+                mychannel:''
+            };
+            $scope.feedbackForm.$setPristine();
+            console.log($scope.feedback, 'after feedback');
+        }
+
+    }  
 }]);
