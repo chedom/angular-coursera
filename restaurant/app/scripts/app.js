@@ -69,16 +69,16 @@ app.controller('MenuController', ['$scope', function($scope) {
 }]);
 
 // comments controllers
-app.controller('DishDetailController', function() {
+app.controller('DishDetailController', ['$scope', function($scope) {
 
-    var dish={
+    var dish= {
                   name:'Uthapizza',
                   image: 'images/uthapizza.png',
                   category: 'mains',
                   label:'Hot',
                   price:'4.99',
                   description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-                   comments: [
+                  comments: [
                        {
                            rating:5,
                            comment:"Imagine all the eatables, living in conFusion!",
@@ -113,10 +113,34 @@ app.controller('DishDetailController', function() {
                    ]
             };
 
-    this.dish = dish;
+    $scope.dish = dish;
 
-    this.orderProp = 'rating';
-});
+    $scope.orderProp = 'rating';
+}]);
+
+app.controller('DishCommentController', ['$scope', function($scope) {
+
+    $scope.newComment = {
+        rating: 5,
+        comment: '',
+        author: '',
+        date: ''
+    };
+
+    $scope.sendComent = function() {
+        var date = new Date();
+        $scope.newComment.date = date.aa.toISOString();
+        $scope.dish.comments($scope.newComment);
+        $scope.newComment = {
+            rating: 5,
+            comment: '',
+            author: '',
+            date: ''
+        };
+        $scope.comentForm.$setPristine();
+    }
+
+}]);
 
 // contacts controllers
 app.controller('ContactController', ['$scope', function($scope) {
