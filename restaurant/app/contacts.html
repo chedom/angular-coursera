@@ -67,8 +67,17 @@
               <h3>Send us your Feedback</h3> 
            </div>
             <div class="col-xs-12 col-sm-9" ng-controller="FeedbackController">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
+                <form 
+                    class="form-horizontal" 
+                    role="form"
+                    name="feedbackForm"
+                    ng-submit="sendSubmit()"
+                    novalidate 
+                >
+                    <div 
+                        class="form-group"
+                        ng-class="{'has-error': feedbackForm.firstname.$error.required && !feedbackForm.firstname.$pristine}"
+                    >
                         <label for="firstname" class="col-sm-2 control-label">First Name</label>
                         <div class="col-sm-10">
                         <input 
@@ -80,9 +89,18 @@
                             ng-model="feedback.firstname" 
                             required 
                         />
+                        <span 
+                            ng-show="feedbackForm.firstname.$error.required && !feedbackForm.firstname.$pristine"
+                            class="help-block"
+                        >
+                            Your First name is required.
+                        </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div 
+                        class="form-group"
+                        ng-class="{'has-error': feedbackForm.lastname.$error.required && !feedbackForm.lastname.$pristine}"
+                    >
                         <label for="lastname" class="col-sm-2 control-label">Last Name</label>
                         <div class="col-sm-10">
                             <input 
@@ -93,6 +111,12 @@
                                 ng-model="feedback.lastname" 
                                 required 
                             />
+                            <span 
+                            ng-show="feedbackForm.lastname.$error.required && !feedbackForm.lastname.$pristine"
+                            class="help-block"
+                        >
+                            Your Last name is required.
+                        </span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -122,7 +146,10 @@
                                     />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div 
+                        class="form-group"
+                        ng-class="{'has-error has-feedback': feedbackForm.emaild.$invalid && !feedbackForm.emailid.$pristine}"
+                    >
                         <label for="emailid" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
                             <input 
@@ -134,9 +161,29 @@
                                 mg-model="feedback.email"
                                 required 
                             />
+                            <span
+                                ng-show="feedbackForm.emaild.$invalid && !feedbackForm.emailid.$pristine"
+                                class = "glyphicon glyphicon-remove form-control-feedback aria-hidden="true
+                            >
+                            </span>
+                            <span
+                                ng-show="feedbackForm.emaild.$invalid && !feedbackForm.emailid.$pristine"
+                                class="help-block"
+                            >
+                                Enter a valid email address.
+                            </span>
+                            <span
+                                ng-show="feedbackForm.emaild.$error.required && !feedbackForm.emailid.$pristine"
+                                class="help-block"
+                            >
+                                Enter a valid email address.
+                            </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div 
+                        class="form-group"
+                        ng-class="{'has-error': ivalidChannelSelection}"
+                    >
                        <div class="checkbox col-sm-5 col-sm-offset-2">
                             <label class="checkbox-inline">
                                 <input 
@@ -147,11 +194,23 @@
                                 <strong>May we contact you?</strong>
                             </label>
                         </div>
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <select class="form-control">
-                                <option>Tel.</option>
-                                <option>Email</option>
+                        <div 
+                            class="col-sm-3 col-sm-offset-1" 
+                            ng-show="feedback.agree"
+                        >
+                            <select 
+                                class="form-control"
+                                ng-model="feedback.mychannel"
+                                ng-options="channel.value as channel.label for channel in channels"
+                            >
+                                <option value = "">Tel. or Email?</option>
                             </select>
+                            <span
+                                ng-show="ivalidChannelSelection"
+                                class="help-block"
+                            >
+                                Select an option.
+                            </span>
                         </div>
                     </div>                    
                     <div class="form-group">
@@ -169,7 +228,13 @@
                     </div> 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Send Feedback</button>
+                            <button 
+                                type="submit" 
+                                class="btn btn-primary"
+                                ng-disabled="feedbackForm.$invalid"
+                            >
+                                Send Feedback
+                            </button>
                         </div>
                     </div>
                 </form>

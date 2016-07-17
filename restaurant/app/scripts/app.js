@@ -127,6 +127,14 @@ app.controller('ContactController', ['$scope', function($scope) {
         email:'',
         mychannel:''
     };
+
+    var channels = [
+        {value: 'tel', label: 'Tel.'}, 
+        {value: 'email', label: 'Email'}
+    ];
+
+    $scope.channels = channels;
+    $scope.ivalidChannelSelection = false;
 }]);
 
 app.controller('FeedbackController', ['$scope', function($scope) {
