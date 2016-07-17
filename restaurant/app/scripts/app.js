@@ -127,17 +127,19 @@ app.controller('DishCommentController', ['$scope', function($scope) {
         date: ''
     };
 
-    $scope.sendComent = function() {
-        var date = new Date();
-        $scope.newComment.date = date.aa.toISOString();
-        $scope.dish.comments($scope.newComment);
+    $scope.stars = [1, 2, 3, 4, 5];
+
+    $scope.sendComment = function() {
+        var currentDate = new Date();
+        $scope.newComment.date = currentDate.toISOString();
+        $scope.dish.comments.push($scope.newComment);
         $scope.newComment = {
             rating: 5,
             comment: '',
             author: '',
             date: ''
         };
-        $scope.comentForm.$setPristine();
+        $scope.commentForm.$setPristine();
     }
 
 }]);

@@ -58,18 +58,100 @@
             </div>
         </div>
 
-        <div class="row row-content">
-            <div class="col-xs-12">
-                <h3>Write your comment</h3> 
+        <div class="row row-content" ng-controller="DishCommentController">
+            <div 
+                class="col-xs-9 col-xs-offset-1"
+                ng-show="commentForm.$valid"
+            >
+                <div>
+                    <h3>Preview:</h3>
+                    <blockquote>
+                        <p>{{newComment.rating}} Stars</p>
+                        <p>{{newComment.comment}}</p>
+                        <footer>{{newComment.author}} <cite title="Source Title">{{newComment.date | date: 'yyyy-MM-dd HH:mm:ss'}}</cite></footer>
+                    </blockquote>
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-9" ng-controller="DishCommentController">
+            <div class="col-xs-12 col-sm-9">
                 <form 
                     class="form-horizontal" 
                     role="form"
-                    name="comentForm"
-                    ng-submit="sendComent()"
+                    name="commentForm"
+                    ng-submit="sendComment()"
                     novalidate 
                 >
+                    <div 
+                        class="form-group"
+                        ng-class="{'has-error': commentForm.author.$error.required && commentForm.author.$dirty}"
+                    >
+                        <label for="author" class="col-sm-2 control-label">Your name</label>
+                        <div class="col-sm-10">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="author" 
+                                name="author" 
+                                placeholder="Enter Author Name"
+                                ng-model="newComment.author" 
+                                required 
+                            />
+                            <span 
+                                ng-show="commentForm.author.$error.required && commentForm.author.$dirty"
+                                class="help-block"
+                            >
+                                Your name is required.
+                            </span>
+                        </div>
+                    </div>
+                    <div 
+                        class="form-group"
+                    >
+                        <label for="star" class="col-sm-2 control-label">Number of stars</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline" ng-repeat="star in stars" >
+                                <input 
+                                    type="radio" 
+                                    name="star" 
+                                    id="inlineRadio1"
+                                    ng-model="newComment.rating" 
+                                    ng-value="{{star}}"
+                                /> {{star}}
+                            </label>
+                        </div>
+                    </div>
+                    <div 
+                        class="form-group"
+                        ng-class="{'has-error': commentForm.comment.$error.required && commentForm.comment.$dirty}"
+                    >
+                        <label for="comment" class="col-sm-2 control-label">Your comment</label>
+                        <div class="col-sm-10">
+                            <textarea 
+                                class="form-control" 
+                                id="comment" 
+                                name="comment" 
+                                rows="12"
+                                ng-model="newComment.comment" 
+                                required 
+                            /></textarea>
+                            <span 
+                                ng-show="commentForm.comment.$error.required && commentForm.comment.$dirty"
+                                class="help-block"
+                            >
+                                Your comment is required.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button 
+                                type="submit" 
+                                class="btn btn-primary"
+                                ng-disabled="commentForm.$invalid"
+                            >
+                                Send Comment
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
