@@ -12,7 +12,7 @@ angular.module('confusionApp')
                 category   : 'mains',
                 label      : 'Hot',
                 price      : '4.99',
-                description: 'A unique combination of Indian Uthappam and Italian pizza',
+                description: 'A unique combination of Uthapizza',
                 comments: [
                      {
                          rating:5,
@@ -44,6 +44,7 @@ angular.module('confusionApp')
                          author:"25 Cent",
                          date:"2011-12-02T17:57:28.556094Z"
                      }
+                 ]
             },
             {
                 name       : 'buffet',
@@ -51,7 +52,7 @@ angular.module('confusionApp')
                 category   : 'mains',
                 label      : 'New',
                 price      : '12.14',
-                description: 'A unique combination of Indian Uthappam and Italian pizza',
+                description: 'A unique combination of buffet',
                 comments: [
                      {
                          rating:4,
@@ -83,6 +84,7 @@ angular.module('confusionApp')
                          author:"25 Cent",
                          date:"2011-12-02T17:57:28.556094Z"
                      }
+                 ]
             },
             {
                 name       : 'elaicheesecake',
@@ -90,7 +92,7 @@ angular.module('confusionApp')
                 category   : 'appetizers',
                 label      : 'Hot',
                 price      : '9.44',
-                description: 'A unique combination of Indian Uthappam and Italian pizza',
+                description: 'A unique combination of elaicheesecake',
                 comments: [
                      {
                          rating:3,
@@ -122,6 +124,7 @@ angular.module('confusionApp')
                          author:"25 Cent",
                          date:"2011-12-02T17:57:28.556094Z"
                      }
+                 ]
             },
             {
                 name       : 'Vadonut',
@@ -129,7 +132,7 @@ angular.module('confusionApp')
                 category   : 'desserts',
                 label      : '',
                 price      : '41.12',
-                description: 'A unique combination of Indian Uthappam and Italian pizza',
+                description: 'A unique combination of Vadonut',
                 comments: [
                      {
                          rating:2,
@@ -161,6 +164,7 @@ angular.module('confusionApp')
                          author:"25 Cent",
                          date:"2011-12-02T17:57:28.556094Z"
                      }
+                 ]
             }
         ];
 
