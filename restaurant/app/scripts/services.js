@@ -172,7 +172,7 @@ angular.module('confusionApp')
             return dishes;
         }
 
-        menuFactory.geDish = function(index) {
+        menuFactory.getDish = function(index) {
             return dishes[index];
         }
 
