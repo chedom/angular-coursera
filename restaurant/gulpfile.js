@@ -24,7 +24,7 @@ gulp.task('jshint', function() {
 
 //Usemin
 gulp.task('usemin',['jshint'], function () {
-  return gulp.src('./app/comments.html')
+  return gulp.src('./app/index.html')
       .pipe(usemin({
         css:[minifycss(),rev()],
         js: [ngAnnotate(), uglify(),rev()]
@@ -77,7 +77,7 @@ gulp.task('browser-sync', ['default'], function () {
    browserSync.init(files, {
       server: {
          baseDir: "dist",
-         index: "comments.html"
+         index: "index.html"
       }
    });
         // Watch any files in dist/, reload on change
