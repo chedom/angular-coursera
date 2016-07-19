@@ -2,6 +2,9 @@
 
 angular.module('confusionApp')
     .factory('menuFactory', function () {
+
+        var menuFactory = {};
+
         var dishes = [
             {
                 name       : 'Uthapizza',
@@ -159,5 +162,16 @@ angular.module('confusionApp')
                          date:"2011-12-02T17:57:28.556094Z"
                      }
             }
-        ]
-    })
+        ];
+
+        menuFactory.getDishes = function() {
+            return dishes;
+        }
+
+        menuFactory.geDish = function(index) {
+            return dishes[index];
+        }
+
+        return menuFactory;
+
+    });
