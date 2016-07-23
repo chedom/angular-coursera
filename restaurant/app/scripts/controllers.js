@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('confusionApp', []);
+var app = angular.module('controllers', []);
 //menu controllers
 app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
     $scope.tab         = 1;

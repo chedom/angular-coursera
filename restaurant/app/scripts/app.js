@@ -1,22 +1,25 @@
 'use strict';
 
-var app = angular.module('confusionApp', ['ngRoute'])
+var app = angular.module('confusionApp', [
+	'ngRoute', 
+	'controllers'
+	])
 	.config(function($routeProvider) {
-		$routeProvider
-			.when('/contactus', {
-				templateUrl: 'templates/contacts.html',
-				controller: 'ContactController'
-			})
-
-			.when('/menu', {
-				templateUrl: 'templates/menu.html',
-				controller: 'MenuController'
-			})
-
-			.when('/menu/:id', {
-				templateUrl: 'templates/dishdetail.html',
-				controller: 'DishDetailController'
-			})
-
-			.otherwise('/contactus');
-	})
+	        $routeProvider
+	            // route for the contactus page
+	            .when('/contactus', {
+	                templateUrl : 'templates/contactus.html',
+	                controller  : 'ContactController'
+	            })
+	            // route for the menu page
+	            .when('/menu', {
+	                templateUrl : 'templates/menu.html',
+	                controller  : 'MenuController'
+	            })
+	            // route for the dish details page
+	            .when('/menu/:id', {
+	                templateUrl : 'templates/dishdetail.html',
+	                controller  : 'DishDetailController'
+	            })
+	            .otherwise({redirectTo: '/contactus'});
+	    });
