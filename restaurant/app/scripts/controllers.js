@@ -32,8 +32,8 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
 }]);
 
 // comments controllers
-app.controller('DishDetailController', ['$scope', '$routeParams', 'menuFactory', function($scope, $routeParams, menuFactory) {
-    $scope.dish = menuFactory.getDish(parseInt($routeParams.id), 10);
+app.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+    $scope.dish = menuFactory.getDish(parseInt($stateParams.id), 10);
     $scope.orderProp = 'rating';
 }]);
 

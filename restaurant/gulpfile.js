@@ -47,7 +47,7 @@ gulp.task('copyfonts', ['clean'], function() {
 });
 
 gulp.task('copytemplates', function() {
-    gulp.src('app/templates/*').pipe(gulp.dest('./dist/templates'));
+    gulp.src('app/views/*').pipe(gulp.dest('./dist/views'));
 });
 
 //clean
