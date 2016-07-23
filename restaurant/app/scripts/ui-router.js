@@ -10,8 +10,7 @@ var app = angular.module('confusionApp.uiRouter', ['ui.router'])
 	        		'header': {templateUrl: 'views/header.html'},
 	        		'footer': {templateUrl: 'views/footer.html'},
 	        		'content': {
-	        			templateUrl: '<h1>To be Completed</h1>',
-	        			controller: 'IndexController'
+	        			template: '<h1>To be Completed</h1>',
 	        		}
 	        	}
 	        })
@@ -20,8 +19,7 @@ var app = angular.module('confusionApp.uiRouter', ['ui.router'])
 	        	url: 'aboutus',
 	        	views: {
 	        		'content@': {
-	        			templateUrl: '<h1>To be Completed</h1>',
-	        			controller: 'AboutController'
+	        			template: '<h1>To be Completed</h1>',
 	        		}
 	        	}
 	        })
@@ -46,7 +44,7 @@ var app = angular.module('confusionApp.uiRouter', ['ui.router'])
 	        	}
 	        })
 
-	        .state('app.dishdetails', {
+	        .state('app.dishdetail', {
 	        	url: 'menu/:id',
 	        	views: {
 	        		'content@': {
