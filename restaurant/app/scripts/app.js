@@ -2,7 +2,8 @@
 
 var app = angular.module('confusionApp', [
 	'ngRoute', 
-	'controllers'
+	'controllers',
+	'services'
 	])
 	.config(function($routeProvider) {
 	        $routeProvider
