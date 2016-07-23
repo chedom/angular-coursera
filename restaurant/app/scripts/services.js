@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('services', [])
+angular.module('confusionApp.services', [])
     .service('menuFactory', function () {
 
         var dishes = [
