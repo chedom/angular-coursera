@@ -6,17 +6,10 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
     $scope.tab         = 1;
     $scope.filterText  = '';
     $scope.showDetails = false;
-    $scope.dishes = {};
-    $scope.showMenu = false;
+    $scope.showMenu = true;
     $scope.message = 'Loading ...';
     
-    menuFactory.getDishes()
-        .then(function(response) {
-            $scope.dishes = response.data;
-            $scope.showMenu = true;
-        }, function(response) {
-            $scope.message = 'Error ' + response.status + ' ' + response.statusText;
-        });
+    $scope.dishes = menuFactory.getDishes().query();
 
     $scope.toggleDetails = function() {
         $scope.showDetails = !$scope.showDetails;
@@ -44,16 +37,9 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
 // comments controllers
 app.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
     
-    $scope.showDish = false;
+    $scope.showDish = true;
     $scope.message = 'Loading ...';
-    $scope.dish = {};
-    menuFactory.getDish(parseInt($stateParams.id), 10)
-        .then(function(response) {
-            $scope.dish = response.data;
-            $scope.showDish = true;
-        }, function(response) {
-            $scope.message = 'Error ' + response.status + ' ' + response.statusText;
-        });
+    $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)});
     $scope.orderProp = 'rating';
 }]);
 
@@ -128,16 +114,9 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 
 app.controller('IndexController', 
     ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
-    $scope.firstDish = {};
-    $scope.showDish = false;
+    $scope.showDish = true;
     $scope.messageDish = 'Loading ...';
-    menuFactory.getDish(0)
-        .then(function(response) {
-            $scope.firstDish = response.data;
-            $scope.showDish = true;
-        }, function(response) {
-            $scope.messageDish = 'Error ' + response.status + ' ' + response.statusText;
-        });
+    $scope.firstDish = menuFactory.getDishes().get({id: 0});
     $scope.promotion = menuFactory.getPromotion(0);
     $scope.leader = corporateFactory.getLider(3);
 }]);
