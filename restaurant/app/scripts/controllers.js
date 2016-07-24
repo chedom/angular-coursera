@@ -7,10 +7,15 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
     $scope.filterText  = '';
     $scope.showDetails = false;
     $scope.dishes = {};
+    $scope.showMenu = false;
+    $scope.message = 'Loading ...';
     
     menuFactory.getDishes()
         .then(function(response) {
             $scope.dishes = response.data;
+            $scope.showMenu = true;
+        }, function(response) {
+            $scope.message = 'Error ' + response.status + ' ' + response.statusText;
         });
 
     $scope.toggleDetails = function() {
@@ -39,10 +44,15 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
 // comments controllers
 app.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
     
+    $scope.showDish = false;
+    $scope.message = 'Loading ...';
     $scope.dish = {};
     menuFactory.getDish(parseInt($stateParams.id), 10)
         .then(function(response) {
             $scope.dish = response.data;
+            $scope.showDish = true;
+        }, function(response) {
+            $scope.message = 'Error ' + response.status + ' ' + response.statusText;
         });
     $scope.orderProp = 'rating';
 }]);
@@ -119,10 +129,14 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 app.controller('IndexController', 
     ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
     $scope.firstDish = {};
-
+    $scope.showDish = false;
+    $scope.messageDish = 'Loading ...';
     menuFactory.getDish(0)
         .then(function(response) {
             $scope.firstDish = response.data;
+            $scope.showDish = true;
+        }, function(response) {
+            $scope.messageDish = 'Error ' + response.status + ' ' + response.statusText;
         });
     $scope.promotion = menuFactory.getPromotion(0);
     $scope.leader = corporateFactory.getLider(3);
