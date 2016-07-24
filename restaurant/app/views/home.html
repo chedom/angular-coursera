@@ -1,0 +1,62 @@
+
+    <div class="container" ng-controller="IndexController">
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Our Lipsmacking Culinary Creations</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+				<div class="media">
+                    <a class="media-left" ui-sref="app.dishdetail({id: firstDish.id})">
+                        <img class="media-object" ng-src={{firstDish.image}} alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{firstDish.name}}</h2>
+                        <span class="label label-danger label-xs">{{firstDish.label}}</span>
+                        <span class="badge">{{firstDish.price | currency}}</span>
+                        <p>{{firstDish.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+                <h3 align=center>This Month's Promotions</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+				<div class="media">
+                    <a class="media-left" href="#">
+                        <img class="media-object" ng-src={{promotion.image}} alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{promotion.name}}</h2>
+                        <span class="label label-danger label-xs">{{promotion.label}}</span>
+                        <span class="badge">{{promotion.price | currency}}</span>
+                        <p>{{promotion.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Meet our Culinary Specialists</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+				<div class="media">
+                    <a class="media-left" href="#">
+                        <img class="media-object" ng-src={{leader.image}} alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{leader.name}}</h2>
+                        <span class="badge">{{leader.designation}}</span>
+                        <p>{{leader.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

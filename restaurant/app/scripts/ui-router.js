@@ -10,7 +10,8 @@ var app = angular.module('confusionApp.uiRouter', ['ui.router'])
 	        		'header': {templateUrl: 'views/header.html'},
 	        		'footer': {templateUrl: 'views/footer.html'},
 	        		'content': {
-	        			template: '<h1>To be Completed</h1>',
+	        			templateUrl: 'views/home.html',
+	        			controller: 'IndexController'
 	        		}
 	        	}
 	        })
