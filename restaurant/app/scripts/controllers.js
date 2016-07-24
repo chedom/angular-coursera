@@ -105,3 +105,14 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 
     }
 }]);
+
+app.controller('IndexController', 
+    ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
+    $scope.firstDish = menuFactory.getDish(0);
+    $scope.promotion = menuFactory.getPromotion(0);
+    $scope.leadr = corporateFactory.getLider(3);
+}]);
+
+app.controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
+    $scope.leaders = corporateFactory.getLiders();
+}]);
