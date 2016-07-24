@@ -6,7 +6,12 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
     $scope.tab         = 1;
     $scope.filterText  = '';
     $scope.showDetails = false;
-    $scope.dishes = menuFactory.getDishes();
+    $scope.dishes = {};
+    
+    menuFactory.getDishes()
+        .then(function(response) {
+            $scope.dishes = response.data;
+        });
 
     $scope.toggleDetails = function() {
         $scope.showDetails = !$scope.showDetails;
@@ -33,7 +38,12 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
 
 // comments controllers
 app.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
-    $scope.dish = menuFactory.getDish(parseInt($stateParams.id), 10);
+    
+    $scope.dish = {};
+    menuFactory.getDish(parseInt($stateParams.id), 10)
+        .then(function(response) {
+            $scope.dish = response.data;
+        });
     $scope.orderProp = 'rating';
 }]);
 
@@ -108,7 +118,12 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 
 app.controller('IndexController', 
     ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
-    $scope.firstDish = menuFactory.getDish(0);
+    $scope.firstDish = {};
+
+    menuFactory.getDish(0)
+        .then(function(response) {
+            $scope.firstDish = response.data;
+        });
     $scope.promotion = menuFactory.getPromotion(0);
     $scope.leader = corporateFactory.getLider(3);
 }]);
