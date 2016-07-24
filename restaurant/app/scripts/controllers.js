@@ -6,10 +6,16 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
     $scope.tab         = 1;
     $scope.filterText  = '';
     $scope.showDetails = false;
-    $scope.showMenu = true;
+    $scope.showMenu = false;
     $scope.message = 'Loading ...';
-    
-    $scope.dishes = menuFactory.getDishes().query();
+    $scope.dishes = {};
+
+    menuFactory.getDishes().query(function(response) {
+        $scope.dishes = response;
+        $scope.showMenu = true;
+    }, function(response) {
+        $scope.message = 'Error: ' + response.status + ' ' + response.statusText;
+    });
 
     $scope.toggleDetails = function() {
         $scope.showDetails = !$scope.showDetails;
@@ -37,13 +43,25 @@ app.controller('MenuController', ['$scope', 'menuFactory', function($scope, menu
 // comments controllers
 app.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
     
-    $scope.showDish = true;
+    $scope.showDish = false;
     $scope.message = 'Loading ...';
-    $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)});
+    $scope.dish = {};
+
+    menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)})
+        .$promise.then(
+            function(response) {
+                $scope.dish = response;
+                $scope.showDish = true;
+            }, function(response) {
+                $scope.message = 'Error: ' + response.status + ' ' + response.statusText;
+            }
+        );
+
+
     $scope.orderProp = 'rating';
 }]);
 
-app.controller('DishCommentController', ['$scope', function($scope) {
+app.controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {
 
     $scope.newComment = {
         rating: 5,
@@ -58,6 +76,7 @@ app.controller('DishCommentController', ['$scope', function($scope) {
         var currentDate = new Date();
         $scope.newComment.date = currentDate.toISOString();
         $scope.dish.comments.push($scope.newComment);
+        menuFactory.getDishes().update({id: $scope.dish.id}, $scope.dish);
         $scope.newComment = {
             rating: 5,
             comment: '',
@@ -116,7 +135,20 @@ app.controller('IndexController',
     ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
     $scope.showDish = true;
     $scope.messageDish = 'Loading ...';
-    $scope.firstDish = menuFactory.getDishes().get({id: 0});
+    $scope.firstDish = {};
+
+    menuFactory.getDishes().get({id: 0})
+        .$promise.then(
+            function(response) {
+                $scope.firstDish = response;
+                $scope.showDish = true;
+            }, function(response) {
+                $scope.message = 'Error: ' + response.status + ' ' + response.statusText;
+            }
+        )
+
+
+
     $scope.promotion = menuFactory.getPromotion(0);
     $scope.leader = corporateFactory.getLider(3);
 }]);
