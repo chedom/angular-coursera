@@ -133,7 +133,8 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 
 app.controller('IndexController', 
     ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
-    $scope.showDish = true;
+
+    $scope.showDish = false;
     $scope.messageDish = 'Loading ...';
     $scope.firstDish = {};
 
@@ -143,16 +144,51 @@ app.controller('IndexController',
                 $scope.firstDish = response;
                 $scope.showDish = true;
             }, function(response) {
-                $scope.message = 'Error: ' + response.status + ' ' + response.statusText;
+                $scope.messageDish = 'Error: ' + response.status + ' ' + response.statusText;
             }
-        )
+        );
 
+    $scope.showPromotion = false;
+    $scope.messagePromotion = 'Loading ...';
+    $scope.promotion = {};
 
+    menuFactory.getPromotions().get({id: 0})
+        .$promise.then(
+            function(response) {
+                $scope.promotion = response;
+                $scope.showPromotion = true;
+            }, function(response) {
+                $scope.messagePromotion = 'Error: ' + response.status + ' ' + response.statusText;
+            }
+        );
 
-    $scope.promotion = menuFactory.getPromotion(0);
-    $scope.leader = corporateFactory.getLider(3);
+    $scope.showLeader = false;
+    $scope.messageLeader = 'Loading ...';
+    $scope.leader = {};
+
+    corporateFactory.getLeaders().get({id: 3})
+        .$promise.then(
+            function(response) {
+                $scope.leader = response;
+                $scope.showLeader = true;
+            }, function(response) {
+                $scope.messageLeader = 'Error: ' + response.status + ' ' + response.statusText;
+            }
+        );
+
 }]);
 
 app.controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
-    $scope.leaders = corporateFactory.getLiders();
+    $scope.showLeaders = false;
+    $scope.messageLeaders = 'Loading ...';
+    $scope.leaders = {};
+
+    corporateFactory.getLeaders().query(
+        function(response) {
+                $scope.leaders = response;
+                $scope.showLeaders = true;
+            }, function(response) {
+                $scope.messageLeaders = 'Error: ' + response.status + ' ' + response.statusText;
+            }
+        )
 }]);
