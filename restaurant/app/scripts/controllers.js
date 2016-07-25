@@ -109,13 +109,14 @@ app.controller('ContactController', ['$scope', function($scope) {
 
 }]);
 
-app.controller('FeedbackController', ['$scope', function($scope) {
+app.controller('FeedbackController', ['$scope', 'feedbackFactory', function($scope, feedbackFactory) {
     $scope.sendSubmit = function() {
         console.log($scope.feedback, 'before feedback');
         if ($scope.feedback.agree && $scope.feedback.mychannel === '') {
             $scope.ivalidChannelSelection = true;
             console.log('incorrect');
         } else {
+            feedbackFactory.getFeedback().save($scope.feedback);
             $scope.ivalidChannelSelection = false;
             $scope.feedback = {
                 firstname: '',

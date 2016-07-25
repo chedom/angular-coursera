@@ -47,7 +47,7 @@
       "image": "images/zucchipakoda.png",
       "category": "appetizer",
       "label": "",
-      "price": "1.99",
+      "price": 1.99,
       "description": "Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce",
       "comments": [
         {
@@ -79,6 +79,12 @@
           "comment": "It's your birthday, we're gonna party!",
           "author": "25 Cent",
           "date": "2011-12-02T17:57:28.556094Z"
+        },
+        {
+          "rating": 5,
+          "comment": "Good!",
+          "author": "Aurora",
+          "date": "2016-07-25T09:19:26.425Z"
         }
       ]
     },
@@ -215,5 +221,32 @@
       "description": "Award winning three-star Michelin chef with wide International experience having worked closely with whos-who in the culinary world, he specializes in creating mouthwatering Indo-Italian fusion experiences. He says, Put together the cuisines from the two craziest cultures, and you get a winning hit! Amma Mia!"
     }
   ],
-  "feedback": []
+  "feedback": [
+    {
+      "firstname": "Vasyl",
+      "lastname": "Dom",
+      "agree": true,
+      "email": "sffs@dfdf.df",
+      "mychannel": "email",
+      "tel": {
+        "areaCode": "312412",
+        "number": "23423"
+      },
+      "comments": "Good!",
+      "id": 1
+    },
+    {
+      "firstname": "Vasyl2",
+      "lastname": "Dom2",
+      "agree": true,
+      "email": "sfdsf@sdd.dff",
+      "mychannel": "tel",
+      "tel": {
+        "areaCode": "232",
+        "number": "32434223"
+      },
+      "comments": "sdfdsfdsf",
+      "id": 2
+    }
+  ]
 }
